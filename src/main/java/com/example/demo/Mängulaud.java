@@ -5,7 +5,7 @@ package com.example.demo;
  * Haldab mängulauda, kontrollib võitjat ja viiki,
  * ning toetab käikude tagasivõtmist.
  */
-public class GameBoard {
+public class Mängulaud {
 
     private char[][] laud;           // 3x3 mängulaud
     private char praeguneMängija;    // praegune mängija ('X' või 'O')
@@ -14,7 +14,7 @@ public class GameBoard {
     /**
      * Konstruktor – loob tühja mängulauda ja alustab mängijaga X.
      */
-    public GameBoard() {
+    public Mängulaud() {
         laud = new char[3][3];
         praeguneMängija = 'X';
         ajalugu = new KäiguAjalugu();
@@ -25,9 +25,9 @@ public class GameBoard {
      * Täidab kõik lahtrid tühimärgiga.
      */
     private void initsialiseeriLaud() {
-        for (int r = 0; r < 3; r++)
-            for (int c = 0; c < 3; c++)
-                laud[r][c] = ' ';
+        for (int rida = 0; rida < 3; rida++)
+            for (int veerg = 0; veerg < 3; veerg++)
+                laud[rida][veerg] = ' ';
     }
 
     /**
@@ -75,14 +75,14 @@ public class GameBoard {
      */
     public char kontrolliVõitjat() {
         // Kontrolli ridu
-        for (int r = 0; r < 3; r++) {
-            if (laud[r][0] != ' ' && laud[r][0] == laud[r][1] && laud[r][1] == laud[r][2])
-                return laud[r][0];
+        for (int rida = 0; rida < 3; rida++) {
+            if (laud[rida][0] != ' ' && laud[rida][0] == laud[rida][1] && laud[rida][1] == laud[rida][2])
+                return laud[rida][0];
         }
         // Kontrolli veerge
-        for (int c = 0; c < 3; c++) {
-            if (laud[0][c] != ' ' && laud[0][c] == laud[1][c] && laud[1][c] == laud[2][c])
-                return laud[0][c];
+        for (int veerg = 0; veerg < 3; veerg++) {
+            if (laud[0][veerg] != ' ' && laud[0][veerg] == laud[1][veerg] && laud[1][veerg] == laud[2][veerg])
+                return laud[0][veerg];
         }
         // Kontrolli diagonaale
         if (laud[0][0] != ' ' && laud[0][0] == laud[1][1] && laud[1][1] == laud[2][2])
@@ -97,9 +97,9 @@ public class GameBoard {
      * @return true kui kõik lahtrid on täidetud
      */
     public boolean onLaudTäis() {
-        for (int r = 0; r < 3; r++)
-            for (int c = 0; c < 3; c++)
-                if (laud[r][c] == ' ') return false;
+        for (int rida = 0; rida < 3; rida++)
+            for (int veerg = 0; veerg < 3; veerg++)
+                if (laud[rida][veerg] == ' ') return false;
         return true;
     }
 

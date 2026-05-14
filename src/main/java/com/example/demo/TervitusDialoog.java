@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 /**
@@ -13,7 +12,7 @@ import javafx.stage.Stage;
  * Küsib mängijate nimed ja kuvab lühikese kasutusjuhise.
  * Sisaldab erinditöötlust tühjade nimede kontrollimiseks.
  */
-public class WelcomeDialog {
+public class TervitusDialoog {
 
     /**
      * Kuvab tervitusdialoogi.

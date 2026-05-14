@@ -7,7 +7,7 @@ import javafx.stage.Stage;
  * Peaklass – käivitab JavaFX rakenduse.
  * Loob esmalt tervitusdialoogi, seejärel avab mänguakna.
  */
-public class Main extends Application {
+public class Peaklass extends Application {
 
     @Override
     public void start(Stage peaLava) {

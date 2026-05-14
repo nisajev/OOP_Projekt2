@@ -17,17 +17,17 @@ import javafx.stage.Stage;
  * Töötleb nii hiire- kui klaviatuurisündmusi.
  * Laud skaleerub akna suuruse muutmisel automaatselt.
  */
-public class GameUI {
+public class MänguKasutajaliides {
 
     private Stage lava;
     private Mängulaud mängulaud;
     private String mängija1, mängija2;
     private int skoor1, skoor2;       // võitude skoorid
 
-    private Button[][] lahtrid;         // 3x3 nupud mängulaual
-    private Label olekuSilt;            // praegune mängija / tulemus
-    private Label skooriSilt;           // skooride kuvamine
-    private GridPane lauaVõrk;          // mängulauda hoidev paneel
+    private Button[][] lahtrid;       // 3x3 nupud mängulaual
+    private Label olekuSilt;          // praegune mängija / tulemus
+    private Label skooriSilt;         // skooride kuvamine
+    private GridPane lauaVõrk;        // mängulauda hoidev paneel
 
     /**
      * Konstruktor – laadib varasemad skoorid failist.
@@ -35,14 +35,14 @@ public class GameUI {
      * @param mängija2 teise mängija nimi
      * @param lava     peaaken
      */
-    public GameUI(String mängija1, String mängija2, Stage lava) {
+    public MänguKasutajaliides(String mängija1, String mängija2, Stage lava) {
         this.mängija1 = mängija1;
         this.mängija2 = mängija2;
         this.lava = lava;
         this.mängulaud = new Mängulaud();
         // Lae varasemad skoorid failist
-        this.skoor1 = Failihaldur.laadiSkoor(mängija1);
-        this.skoor2 = Failihaldur.laadiSkoor(mängija2);
+        this.skoor1 = FailiHaldur.laadiSkoor(mängija1);
+        this.skoor2 = FailiHaldur.laadiSkoor(mängija2);
     }
 
     /**
@@ -63,19 +63,20 @@ public class GameUI {
         lauaVõrk.setVgap(5);
         lahtrid = new Button[3][3];
 
-        for (int r = 0; r < 3; r++) {
-            for (int c = 0; c < 3; c++) {
-                Button btn = new Button(" ");
-                btn.setFont(Font.font("Arial", 40));
-                btn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                GridPane.setHgrow(btn, Priority.ALWAYS);
-                GridPane.setVgrow(btn, Priority.ALWAYS);
+        for (int rida = 0; rida < 3; rida++) {
+            for (int veerg = 0; veerg < 3; veerg++) {
+                Button nupp = new Button(" ");
+                nupp.setFont(Font.font("Arial", 40));
+                nupp.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+                GridPane.setHgrow(nupp, Priority.ALWAYS);
+                GridPane.setVgrow(nupp, Priority.ALWAYS);
 
-                final int rida = r, veerg = c;
+                // Vajalik lambdas kasutamiseks (effectively final)
+                final int ridaF = rida, veergF = veerg;
                 // Hiire sündmus: klõps lahtril
-                btn.setOnAction(e -> töötleLahtriKlõpsu(rida, veerg));
-                lahtrid[r][c] = btn;
-                lauaVõrk.add(btn, c, r);
+                nupp.setOnAction(e -> töötleLahtriKlõpsu(ridaF, veergF));
+                lahtrid[rida][veerg] = nupp;
+                lauaVõrk.add(nupp, veerg, rida);
             }
         }
 
@@ -163,16 +164,16 @@ public class GameUI {
             // Uuenda ja salvesta skoorid
             if (võitja == 'X') skoor1++;
             else skoor2++;
-            Failihaldur.salvestaSkoor(mängija1, skoor1);
-            Failihaldur.salvestaSkoor(mängija2, skoor2);
+            FailiHaldur.salvestaSkoor(mängija1, skoor1);
+            FailiHaldur.salvestaSkoor(mängija2, skoor2);
             skooriSilt.setText(getSkooriTekst());
             // Salvesta logi
-            Failihaldur.salvestaMänguLogi(mängija1, mängija2, võitja,
+            FailiHaldur.salvestaMänguLogi(mängija1, mängija2, võitja,
                     mängulaud.getAjalugu().toLogiString());
             keelustaLaud();
         } else if (mängulaud.onLaudTäis()) {
             olekuSilt.setText("🤝 Viik! Keegi ei võitnud.");
-            Failihaldur.salvestaMänguLogi(mängija1, mängija2, ' ',
+            FailiHaldur.salvestaMänguLogi(mängija1, mängija2, ' ',
                     mängulaud.getAjalugu().toLogiString());
         } else {
             // Järgmise mängija kord
@@ -194,12 +195,12 @@ public class GameUI {
         }
         // Uuenda laud visuaalselt
         char[][] laud = mängulaud.getLaud();
-        for (int r = 0; r < 3; r++) {
-            for (int c = 0; c < 3; c++) {
-                if (laud[r][c] == ' ') {
-                    lahtrid[r][c].setText(" ");
-                    lahtrid[r][c].setStyle("");
-                    lahtrid[r][c].setDisable(false);
+        for (int rida = 0; rida < 3; rida++) {
+            for (int veerg = 0; veerg < 3; veerg++) {
+                if (laud[rida][veerg] == ' ') {
+                    lahtrid[rida][veerg].setText(" ");
+                    lahtrid[rida][veerg].setStyle("");
+                    lahtrid[rida][veerg].setDisable(false);
                 }
             }
         }
@@ -228,15 +229,15 @@ public class GameUI {
      * Kuvab logifaili viimased kirjed eraldi dialoogis.
      */
     private void näitaLogi() {
-        String logi = Failihaldur.loeViimasedRead(30);
+        String logi = FailiHaldur.loeViimasedRead(30);
         Alert teade = new Alert(Alert.AlertType.INFORMATION);
         teade.setTitle("Mängu logi");
         teade.setHeaderText("Viimased mängud:");
-        TextArea ta = new TextArea(logi);
-        ta.setEditable(false);
-        ta.setWrapText(true);
-        ta.setPrefSize(380, 300);
-        teade.getDialogPane().setContent(ta);
+        TextArea tekstiAla = new TextArea(logi);
+        tekstiAla.setEditable(false);
+        tekstiAla.setWrapText(true);
+        tekstiAla.setPrefSize(380, 300);
+        teade.getDialogPane().setContent(tekstiAla);
         teade.showAndWait();
     }
 

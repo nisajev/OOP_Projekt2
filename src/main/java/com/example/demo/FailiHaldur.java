@@ -10,11 +10,11 @@ import java.util.List;
  * Failihaldur – vastutab kõige failiga seotud toimingute eest.
  * Kirjutab mängu logi faili ja loeb varasemaid tulemusi.
  */
-public class FileManager {
+public class FailiHaldur {
 
-    private static final String LOGIFAIL = "game_log.txt";
-    private static final String SKOORIFAIL = "scores.txt";
-    private static final DateTimeFormatter VORMINDJA =
+    private static final String logifail= "game_log.txt";
+    private static final String skoorifail = "scores.txt";
+    private static final DateTimeFormatter vormindaja =
             DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     /**
@@ -26,8 +26,8 @@ public class FileManager {
      */
     public static void salvestaMänguLogi(String mängija1, String mängija2,
                                          char võitja, String käigulogi) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOGIFAIL, true))) {
-            bw.write("=== Mäng " + LocalDateTime.now().format(VORMINDJA) + " ===");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(logifail, true))) {
+            bw.write("=== Mäng " + LocalDateTime.now().format(vormindaja) + " ===");
             bw.newLine();
             bw.write("Mängijad: " + mängija1 + " (X) vs " + mängija2 + " (O)");
             bw.newLine();
@@ -56,7 +56,7 @@ public class FileManager {
         // Loe olemasolevad skoorid
         List<String> read = new ArrayList<>();
         boolean leitud = false;
-        File f = new File(SKOORIFAIL);
+        File f = new File(skoorifail);
 
         if (f.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
@@ -77,7 +77,7 @@ public class FileManager {
         if (!leitud) read.add(mängijaNimi + ":" + võidud);
 
         // Kirjuta uuendatud skoorid tagasi
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(SKOORIFAIL))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(skoorifail))) {
             for (String rida : read) {
                 bw.write(rida);
                 bw.newLine();
@@ -93,7 +93,7 @@ public class FileManager {
      * @return võitude arv, 0 kui mängijat pole veel failis
      */
     public static int laadiSkoor(String mängijaNimi) {
-        File f = new File(SKOORIFAIL);
+        File f = new File(skoorifail);
         if (!f.exists()) return 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
@@ -116,7 +116,7 @@ public class FileManager {
      * @return loetud read ühendatuna
      */
     public static String loeViimasedRead(int maxRidu) {
-        File f = new File(LOGIFAIL);
+        File f = new File(logifail);
         if (!f.exists()) return "Logifail puudub.";
 
         List<String> read = new ArrayList<>();

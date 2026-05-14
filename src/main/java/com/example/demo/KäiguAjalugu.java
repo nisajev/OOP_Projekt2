@@ -7,12 +7,12 @@ import java.util.List;
  * MoveHistory – salvestab kõik mängu käigud järjendina.
  * Võimaldab käike tagasi võtta (undo) ja ajalugu kustutada.
  */
-public class MoveHistory {
+public class KäiguAjalugu {
 
     // Iga käik on kolmeelemendiline massiiv: [rida, veerg, mängija ASCII kood]
     private List<int[]> käigud;
 
-    public MoveHistory() {
+    public KäiguAjalugu() {
         käigud = new ArrayList<>();
     }
 

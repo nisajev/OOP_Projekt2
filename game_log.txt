@@ -1,0 +1,36 @@
+=== Mäng 14.05.2026 16:24:17 ===
+Mängijad: j (X) vs z (O)
+Võitja: j (X)
+Käigud:
+Käik 1: X -> (0,0)
+Käik 2: O -> (1,1)
+Käik 3: X -> (2,0)
+Käik 4: O -> (0,2)
+Käik 5: X -> (1,0)
+
+=== Mäng 14.05.2026 16:24:35 ===
+Mängijad: j (X) vs z (O)
+Võitja: z (O)
+Käigud:
+Käik 1: X -> (1,1)
+Käik 2: O -> (1,0)
+Käik 3: X -> (0,1)
+Käik 4: O -> (2,2)
+Käik 5: X -> (2,0)
+Käik 6: O -> (0,2)
+Käik 7: X -> (0,0)
+Käik 8: O -> (1,2)
+
+=== Mäng 14.05.2026 16:24:54 ===
+Mängijad: j (X) vs z (O)
+Võitja: z (O)
+Käigud:
+Käik 1: X -> (0,0)
+Käik 2: O -> (1,1)
+Käik 3: X -> (0,1)
+Käik 4: O -> (1,0)
+Käik 5: X -> (2,0)
+Käik 6: O -> (2,1)
+Käik 7: X -> (2,2)
+Käik 8: O -> (1,2)
+
