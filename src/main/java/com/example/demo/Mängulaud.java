@@ -1,7 +1,7 @@
 package com.example.demo;
 
 /**
- * Mängulaud – sisaldab kogu mängu loogikat.
+ * Mängulaud sisaldab kogu mängu loogikat.
  * Haldab mängulauda, kontrollib võitjat ja viiki,
  * ning toetab käikude tagasivõtmist.
  */
@@ -12,7 +12,7 @@ public class Mängulaud {
     private KäiguAjalugu ajalugu;    // käikude ajalugu
 
     /**
-     * Konstruktor – loob tühja mängulauda ja alustab mängijaga X.
+     * Konstruktor loob tühja mängulauda ja alustab mängijaga X.
      */
     public Mängulaud() {
         laud = new char[3][3];

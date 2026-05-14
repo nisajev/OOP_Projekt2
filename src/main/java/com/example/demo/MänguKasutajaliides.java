@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * MänguKasutajaliides – peamine mänguliides JavaFX-is.
+ * MänguKasutajaliides on peamine mänguliides JavaFX-is.
  * Kuvab mängulauda, inforibasid ja nuppusid.
  * Töötleb nii hiire- kui klaviatuurisündmusi.
  * Laud skaleerub akna suuruse muutmisel automaatselt.
@@ -30,7 +30,7 @@ public class MänguKasutajaliides {
     private GridPane lauaVõrk;        // mängulauda hoidev paneel
 
     /**
-     * Konstruktor – laadib varasemad skoorid failist.
+     * Konstruktor laadib varasemad skoorid failist.
      * @param mängija1 esimese mängija nimi
      * @param mängija2 teise mängija nimi
      * @param lava     peaaken

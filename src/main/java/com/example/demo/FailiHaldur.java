@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Failihaldur – vastutab kõige failiga seotud toimingute eest.
+ * FailiHaldur – vastutab kõige failiga seotud toimingute eest.
  * Kirjutab mängu logi faili ja loeb varasemaid tulemusi.
  */
 public class FailiHaldur {

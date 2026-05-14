@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MoveHistory – salvestab kõik mängu käigud järjendina.
+ * KäiguAjalugu salvestab kõik mängu käigud järjendina.
  * Võimaldab käike tagasi võtta (undo) ja ajalugu kustutada.
  */
 public class KäiguAjalugu {

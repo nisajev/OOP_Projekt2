@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
- * WelcomeDialog – tervitusaken mängu alguses.
+ * TervitusDialoog - tervitusaken mängu alguses.
  * Küsib mängijate nimed ja kuvab lühikese kasutusjuhise.
  * Sisaldab erinditöötlust tühjade nimede kontrollimiseks.
  */
