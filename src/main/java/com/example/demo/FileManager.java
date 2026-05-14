@@ -7,40 +7,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FileManager – vastutab kõige failiga seotud toimingute eest.
+ * Failihaldur – vastutab kõige failiga seotud toimingute eest.
  * Kirjutab mängu logi faili ja loeb varasemaid tulemusi.
  */
 public class FileManager {
 
-    private static final String LOG_FILE = "game_log.txt";
-    private static final String SCORES_FILE = "scores.txt";
-    private static final DateTimeFormatter FORMATTER =
+    private static final String LOGIFAIL = "game_log.txt";
+    private static final String SKOORIFAIL = "scores.txt";
+    private static final DateTimeFormatter VORMINDJA =
             DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     /**
      * Kirjutab lõppenud mängu tulemuse ja käigud logifaili.
-     * @param player1     esimese mängija nimi
-     * @param player2     teise mängija nimi
-     * @param winner      võitja märk ('X', 'O' või ' ' viigi korral)
-     * @param moveLog     käikude tekstiline kirjeldus
+     * @param mängija1     esimese mängija nimi
+     * @param mängija2     teise mängija nimi
+     * @param võitja       võitja märk ('X', 'O' või ' ' viigi korral)
+     * @param käigulogi     käikude tekstiline kirjeldus
      */
-    public static void saveGameLog(String player1, String player2,
-                                   char winner, String moveLog) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOG_FILE, true))) {
-            bw.write("=== Mäng " + LocalDateTime.now().format(FORMATTER) + " ===");
+    public static void salvestaMänguLogi(String mängija1, String mängija2,
+                                         char võitja, String käigulogi) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOGIFAIL, true))) {
+            bw.write("=== Mäng " + LocalDateTime.now().format(VORMINDJA) + " ===");
             bw.newLine();
-            bw.write("Mängijad: " + player1 + " (X) vs " + player2 + " (O)");
+            bw.write("Mängijad: " + mängija1 + " (X) vs " + mängija2 + " (O)");
             bw.newLine();
-            if (winner == ' ') {
+            if (võitja == ' ') {
                 bw.write("Tulemus: Viik!");
             } else {
-                String winnerName = (winner == 'X') ? player1 : player2;
-                bw.write("Võitja: " + winnerName + " (" + winner + ")");
+                String võitjaNimi = (võitja == 'X') ? mängija1 : mängija2;
+                bw.write("Võitja: " + võitjaNimi + " (" + võitja + ")");
             }
             bw.newLine();
             bw.write("Käigud:");
             bw.newLine();
-            bw.write(moveLog);
+            bw.write(käigulogi);
             bw.newLine();
         } catch (IOException e) {
             System.err.println("Viga logifaili kirjutamisel: " + e.getMessage());
@@ -49,24 +49,24 @@ public class FileManager {
 
     /**
      * Salvestab mängija skoori (võitude arv) faili.
-     * @param playerName mängija nimi
-     * @param wins       võitude arv
+     * @param mängijaNimi mängija nimi
+     * @param võidud       võitude arv
      */
-    public static void saveScore(String playerName, int wins) {
+    public static void salvestaSkoor(String mängijaNimi, int võidud) {
         // Loe olemasolevad skoorid
-        List<String> lines = new ArrayList<>();
-        boolean found = false;
-        File f = new File(SCORES_FILE);
+        List<String> read = new ArrayList<>();
+        boolean leitud = false;
+        File f = new File(SKOORIFAIL);
 
         if (f.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    if (line.startsWith(playerName + ":")) {
-                        lines.add(playerName + ":" + wins);
-                        found = true;
+                String rida;
+                while ((rida = br.readLine()) != null) {
+                    if (rida.startsWith(mängijaNimi + ":")) {
+                        read.add(mängijaNimi + ":" + võidud);
+                        leitud = true;
                     } else {
-                        lines.add(line);
+                        read.add(rida);
                     }
                 }
             } catch (IOException e) {
@@ -74,12 +74,12 @@ public class FileManager {
             }
         }
 
-        if (!found) lines.add(playerName + ":" + wins);
+        if (!leitud) read.add(mängijaNimi + ":" + võidud);
 
         // Kirjuta uuendatud skoorid tagasi
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(SCORES_FILE))) {
-            for (String line : lines) {
-                bw.write(line);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(SKOORIFAIL))) {
+            for (String rida : read) {
+                bw.write(rida);
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -89,19 +89,19 @@ public class FileManager {
 
     /**
      * Loeb mängija varasema skoori failist.
-     * @param playerName mängija nimi
+     * @param mängijaNimi mängija nimi
      * @return võitude arv, 0 kui mängijat pole veel failis
      */
-    public static int loadScore(String playerName) {
-        File f = new File(SCORES_FILE);
+    public static int laadiSkoor(String mängijaNimi) {
+        File f = new File(SKOORIFAIL);
         if (!f.exists()) return 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2 && parts[0].equals(playerName)) {
-                    return Integer.parseInt(parts[1].trim());
+            String rida;
+            while ((rida = br.readLine()) != null) {
+                String[] osad = rida.split(":");
+                if (osad.length == 2 && osad[0].equals(mängijaNimi)) {
+                    return Integer.parseInt(osad[1].trim());
                 }
             }
         } catch (IOException | NumberFormatException e) {
@@ -112,25 +112,25 @@ public class FileManager {
 
     /**
      * Loeb viimased N rida logifailist (näitamiseks UI-s).
-     * @param maxLines maksimaalne ridade arv
+     * @param maxRidu maksimaalne ridade arv
      * @return loetud read ühendatuna
      */
-    public static String readLastLog(int maxLines) {
-        File f = new File(LOG_FILE);
+    public static String loeViimasedRead(int maxRidu) {
+        File f = new File(LOGIFAIL);
         if (!f.exists()) return "Logifail puudub.";
 
-        List<String> lines = new ArrayList<>();
+        List<String> read = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-            String line;
-            while ((line = br.readLine()) != null) lines.add(line);
+            String rida;
+            while ((rida = br.readLine()) != null) read.add(rida);
         } catch (IOException e) {
             return "Viga logifaili lugemisel: " + e.getMessage();
         }
 
-        int start = Math.max(0, lines.size() - maxLines);
+        int algus = Math.max(0, read.size() - maxRidu);
         StringBuilder sb = new StringBuilder();
-        for (int i = start; i < lines.size(); i++) {
-            sb.append(lines.get(i)).append("\n");
+        for (int i = algus; i < read.size(); i++) {
+            sb.append(read.get(i)).append("\n");
         }
         return sb.toString();
     }

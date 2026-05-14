@@ -10,10 +10,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage peaLava) {
         // Näita tervitusdialoog enne mängu algust
-        WelcomeDialog welcome = new WelcomeDialog();
-        welcome.show(primaryStage);
+        TervitusDialoog tervitus = new TervitusDialoog();
+        tervitus.näita(peaLava);
     }
 
     public static void main(String[] args) {

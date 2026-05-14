@@ -17,93 +17,93 @@ public class WelcomeDialog {
 
     /**
      * Kuvab tervitusdialoogi.
-     * @param primaryStage peaaken, mis pärast dialoogi aktiveeritakse
+     * @param peaLava peaaken, mis pärast dialoogi aktiveeritakse
      */
-    public void show(Stage primaryStage) {
-        Stage dialog = new Stage();
-        dialog.setTitle("Ristkülik-Nullmäng – Tere tulemast!");
+    public void näita(Stage peaLava) {
+        Stage dialoog = new Stage();
+        dialoog.setTitle("Ristkülik-Nullmäng – Tere tulemast!");
 
-        VBox root = new VBox(15);
-        root.setPadding(new Insets(25));
-        root.setAlignment(Pos.CENTER);
+        VBox juur = new VBox(15);
+        juur.setPadding(new Insets(25));
+        juur.setAlignment(Pos.CENTER);
 
         // Pealkiri
-        Label title = new Label("❌ Ristkülik-Nullmäng ⭕");
-        title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+        Label pealkiri = new Label("❌ Ristkülik-Nullmäng ⭕");
+        pealkiri.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
         // Kasutusjuhis
-        TextArea info = new TextArea(
-            "Mängu eesmärk: saada kolm oma märki (X või O) järjest " +
-            "– horisontaalselt, vertikaalselt või diagonaalselt.\n\n" +
-            "Juhised:\n" +
-            "  • Klõpsa lahtril, et teha käik\n" +
-            "  • Vajuta Ctrl+Z, et viimane käik tagasi võtta\n" +
-            "  • Mängijate nimed salvestatakse skoorifaili\n" +
-            "  • Iga mängu käigud salvestatakse logifaili"
+        TextArea teave = new TextArea(
+                "Mängu eesmärk: saada kolm oma märki (X või O) järjest " +
+                        "– horisontaalselt, vertikaalselt või diagonaalselt.\n\n" +
+                        "Juhised:\n" +
+                        "  • Klõpsa lahtril, et teha käik\n" +
+                        "  • Vajuta Ctrl+Z, et viimane käik tagasi võtta\n" +
+                        "  • Mängijate nimed salvestatakse skoorifaili\n" +
+                        "  • Iga mängu käigud salvestatakse logifaili"
         );
-        info.setEditable(false);
-        info.setWrapText(true);
-        info.setPrefHeight(150);
-        info.setStyle("-fx-font-size: 13px;");
+        teave.setEditable(false);
+        teave.setWrapText(true);
+        teave.setPrefHeight(150);
+        teave.setStyle("-fx-font-size: 13px;");
 
         // Mängijate nimede sisestamine
-        Label nameLabel = new Label("Sisesta mängijate nimed:");
-        nameLabel.setStyle("-fx-font-weight: bold;");
+        Label nimedeSilt = new Label("Sisesta mängijate nimed:");
+        nimedeSilt.setStyle("-fx-font-weight: bold;");
 
-        GridPane nameGrid = new GridPane();
-        nameGrid.setHgap(10);
-        nameGrid.setVgap(8);
-        nameGrid.setAlignment(Pos.CENTER);
+        GridPane nimedeVõrk = new GridPane();
+        nimedeVõrk.setHgap(10);
+        nimedeVõrk.setVgap(8);
+        nimedeVõrk.setAlignment(Pos.CENTER);
 
-        TextField p1Field = new TextField();
-        p1Field.setPromptText("Mängija 1 nimi (X)");
+        TextField m1Väli = new TextField();
+        m1Väli.setPromptText("Mängija 1 nimi (X)");
 
-        TextField p2Field = new TextField();
-        p2Field.setPromptText("Mängija 2 nimi (O)");
+        TextField m2Väli = new TextField();
+        m2Väli.setPromptText("Mängija 2 nimi (O)");
 
-        nameGrid.add(new Label("Mängija X:"), 0, 0);
-        nameGrid.add(p1Field, 1, 0);
-        nameGrid.add(new Label("Mängija O:"), 0, 1);
-        nameGrid.add(p2Field, 1, 1);
+        nimedeVõrk.add(new Label("Mängija X:"), 0, 0);
+        nimedeVõrk.add(m1Väli, 1, 0);
+        nimedeVõrk.add(new Label("Mängija O:"), 0, 1);
+        nimedeVõrk.add(m2Väli, 1, 1);
 
         // Veateate silt
-        Label errorLabel = new Label("");
-        errorLabel.setStyle("-fx-text-fill: red;");
+        Label veaTeade = new Label("");
+        veaTeade.setStyle("-fx-text-fill: red;");
 
         // Alusta mängu nupp
-        Button startBtn = new Button("Alusta mängu!");
-        startBtn.setStyle("-fx-font-size: 14px; -fx-padding: 8 20;");
-        startBtn.setDefaultButton(true);
+        Button algusNupp = new Button("Alusta mängu!");
+        algusNupp.setStyle("-fx-font-size: 14px; -fx-padding: 8 20;");
+        algusNupp.setDefaultButton(true);
 
-        startBtn.setOnAction(e -> {
+        algusNupp.setOnAction(e -> {
             try {
-                String name1 = p1Field.getText().trim();
-                String name2 = p2Field.getText().trim();
+                String nimi1 = m1Väli.getText().trim();
+                String nimi2 = m2Väli.getText().trim();
 
                 // Erinditöötlus: nimed ei tohi olla tühjad
-                if (name1.isEmpty() || name2.isEmpty()) {
+                if (nimi1.isEmpty() || nimi2.isEmpty()) {
                     throw new IllegalArgumentException("Mõlemad mängijate nimed peavad olema täidetud!");
                 }
                 // Nimed peavad olema erinevad
-                if (name1.equalsIgnoreCase(name2)) {
+                if (nimi1.equalsIgnoreCase(nimi2)) {
                     throw new IllegalArgumentException("Mängijate nimed peavad olema erinevad!");
                 }
 
                 // Sulge dialoog ja ava mänguaken
-                dialog.close();
-                GameUI gameUI = new GameUI(name1, name2, primaryStage);
-                gameUI.show();
+                dialoog.close();
+                MänguKasutajaliides mänguLiides = new MänguKasutajaliides(nimi1, nimi2, peaLava);
+                mänguLiides.näita();
 
             } catch (IllegalArgumentException ex) {
-                errorLabel.setText(ex.getMessage());
+                veaTeade.setText(ex.getMessage());
             }
         });
 
-        root.getChildren().addAll(title, info, nameLabel, nameGrid, errorLabel, startBtn);
+        juur.getChildren().addAll(pealkiri, teave, nimedeSilt, nimedeVõrk, veaTeade, algusNupp);
 
-        Scene scene = new Scene(root, 450, 420);
-        dialog.setScene(scene);
-        dialog.setResizable(false);
-        dialog.show();
+        Scene stseen = new Scene(juur, 450, 420);
+        dialoog.setScene(stseen);
+        dialoog.setResizable(false);
+        dialoog.show();
     }
 }
