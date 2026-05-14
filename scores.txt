@@ -6,3 +6,5 @@ s:0
 g:1
 dsdas:2
 dasdas:0
+nknkjn:1
+hjh:0

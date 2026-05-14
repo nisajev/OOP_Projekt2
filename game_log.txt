@@ -85,3 +85,27 @@ Käik 5: X -> (2,2)
 Käik 6: O -> (2,1)
 Käik 7: X -> (2,0)
 
+=== Mäng 14.05.2026 16:57:27 ===
+Mängijad: asdasd (X) vs asddasdas (O)
+Tulemus: Viik!
+Käigud:
+Käik 1: X -> (1,1)
+Käik 2: O -> (1,0)
+Käik 3: X -> (0,2)
+Käik 4: O -> (2,2)
+Käik 5: X -> (2,1)
+Käik 6: O -> (2,0)
+Käik 7: X -> (0,0)
+Käik 8: O -> (0,1)
+Käik 9: X -> (1,2)
+
+=== Mäng 14.05.2026 17:03:50 ===
+Mängijad: nknkjn (X) vs hjh (O)
+Võitja: nknkjn (X)
+Käigud:
+Käik 1: X -> (0,2)
+Käik 2: O -> (1,1)
+Käik 3: X -> (0,1)
+Käik 4: O -> (1,0)
+Käik 5: X -> (0,0)
+
