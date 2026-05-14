@@ -20,14 +20,14 @@ public class TervitusDialoog {
      */
     public void näita(Stage peaLava) {
         Stage dialoog = new Stage();
-        dialoog.setTitle("Ristkülik-Nullmäng – Tere tulemast!");
+        dialoog.setTitle("Trips-Traps-Trull");
 
         VBox juur = new VBox(15);
         juur.setPadding(new Insets(25));
         juur.setAlignment(Pos.CENTER);
 
         // Pealkiri
-        Label pealkiri = new Label("❌ Ristkülik-Nullmäng ⭕");
+        Label pealkiri = new Label("❌ Trips-Traps-Trull ⭕");
         pealkiri.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
         // Kasutusjuhis

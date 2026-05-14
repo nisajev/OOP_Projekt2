@@ -81,9 +81,9 @@ public class MänguKasutajaliides {
         }
 
         // Nupuriba allosas
-        Button tagasivõtuNupp = new Button("↩ Võta tagasi");
-        Button uusMänguNupp = new Button("🔄 Uus mäng");
-        Button logiNupp = new Button("📋 Vaata logi");
+        Button tagasivõtuNupp = new Button("Tagasi");
+        Button uusMänguNupp = new Button("Uus mäng");
+        Button logiNupp = new Button("Vaata logi");
 
         tagasivõtuNupp.setOnAction(e -> töötleTagasivõtmist());
         uusMänguNupp.setOnAction(e -> töötleUutMängu());
@@ -119,7 +119,7 @@ public class MänguKasutajaliides {
                 this::töötleTagasivõtmist
         );
 
-        lava.setTitle("Ristkülik-Nullmäng");
+        lava.setTitle("Trips-Traps-Trull");
         lava.setScene(stseen);
         lava.setMinWidth(300);
         lava.setMinHeight(350);

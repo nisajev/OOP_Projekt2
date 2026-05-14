@@ -34,3 +34,54 @@ Käik 6: O -> (2,1)
 Käik 7: X -> (2,2)
 Käik 8: O -> (1,2)
 
+=== Mäng 14.05.2026 16:50:56 ===
+Mängijad: pipiska (X) vs ss (O)
+Võitja: pipiska (X)
+Käigud:
+Käik 1: X -> (0,1)
+Käik 2: O -> (1,0)
+Käik 3: X -> (2,0)
+Käik 4: O -> (2,1)
+Käik 5: X -> (2,2)
+Käik 6: O -> (1,2)
+Käik 7: X -> (1,1)
+Käik 8: O -> (0,0)
+Käik 9: X -> (0,2)
+
+=== Mäng 14.05.2026 16:54:41 ===
+Mängijad: s (X) vs g (O)
+Võitja: g (O)
+Käigud:
+Käik 1: X -> (0,1)
+Käik 2: O -> (0,2)
+Käik 3: X -> (1,2)
+Käik 4: O -> (1,1)
+Käik 5: X -> (2,1)
+Käik 6: O -> (2,0)
+
+=== Mäng 14.05.2026 16:55:37 ===
+Mängijad: dsdas (X) vs dasdas (O)
+Võitja: dsdas (X)
+Käigud:
+Käik 1: X -> (0,1)
+Käik 2: O -> (1,2)
+Käik 3: X -> (2,0)
+Käik 4: O -> (2,1)
+Käik 5: X -> (1,1)
+Käik 6: O -> (1,0)
+Käik 7: X -> (0,0)
+Käik 8: O -> (0,2)
+Käik 9: X -> (2,2)
+
+=== Mäng 14.05.2026 16:55:51 ===
+Mängijad: dsdas (X) vs dasdas (O)
+Võitja: dsdas (X)
+Käigud:
+Käik 1: X -> (0,2)
+Käik 2: O -> (0,1)
+Käik 3: X -> (1,1)
+Käik 4: O -> (1,2)
+Käik 5: X -> (2,2)
+Käik 6: O -> (2,1)
+Käik 7: X -> (2,0)
+
